@@ -1,0 +1,12 @@
+- name: AMER
+  slug: amer
+- name: APAC
+  slug: apac
+- name: EMEA
+  slug: emea
+- name: NY
+  slug: ny
+  parent: AMER
+- name: UK
+  slug: uk
+  parent: EMEA

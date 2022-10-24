@@ -1,0 +1,24 @@
+- name: cage 101
+  slug: cage-101
+  site: NY5
+- name: cage 201
+  slug: cage-201
+  site: NY5
+- name: cage 2000
+  slug: cage-2000
+  site: PNJ1
+- name: cage 1000
+  slug: cage-1000
+  site: CH2
+- name: cage ABS536
+  slug: cage-abs536
+  site: LON3
+- name: cage 9999
+  slug: cage-9999
+  site: LD7
+- name: cage 1ABS95
+  slug: cage-1abs95
+  site: SG3
+- name: cage 9991119
+  slug: cage-9991119
+  site: HK2

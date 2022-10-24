@@ -1,0 +1,47 @@
+## Possible Choices:
+##   face:
+##   - front
+##   - rear
+##   status:
+##   - offline
+##   - active
+##   - planned
+##   - staged
+##   - failed
+##   - inventory
+##   - decommissioning
+##
+## Examples:
+
+- name: server01
+  device_role: server
+  device_type: Other
+  site: NY5
+  rack: rack-101
+  face: front
+  position: 1
+- name: server02
+  device_role: server
+  device_type: Other
+  site: NY5
+  rack: rack-101
+  face: front
+  position: 2
+  primary_ip4: 10.1.1.2/24
+  primary_ip4_vrf: vrf1
+  primary_ip6: 2001:db8:a000:1::2/64
+  primary_ip6_vrf: vrf1
+- name: server03
+  device_role: server
+  device_type: Other
+  site: PNJ1
+  rack: rack-A599
+  face: front
+  position: 3
+- name: server04
+  device_role: server
+  device_type: Other
+  site: NY5
+  location: cage 201
+  face: front
+  position: 3

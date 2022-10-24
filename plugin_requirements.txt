@@ -1,0 +1,11 @@
+git+https://github.com/ArnesSI/netbox-inventory.git@master
+netbox-acls
+netbox-bgp
+#netbox-config-backup
+netbox-devicetype-importer
+netbox-initializers
+netbox-lists
+netbox-plugin-prometheus-sd
+#netbox-static-routes
+netbox-topology-views
+#netbox-vrf-context

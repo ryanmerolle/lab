@@ -1,0 +1,113 @@
+- site: NY5
+  location: cage 101
+  name: rack-101
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48
+- site: NY5
+  location: cage 101
+  name: rack-102
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48
+- site: NY5
+  location: cage 101
+  name: rack-103
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48
+- site: NY5
+  location: cage 101
+  name: rack-104
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48
+- site: NY5
+  location: cage 101
+  name: rack-105
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48
+- site: NY5
+  location: cage 101
+  name: rack-106
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48
+- site: NY5
+  location: cage 101
+  name: rack-106
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48
+- site: NY5
+  location: cage 101
+  name: rack-107
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48
+- site: NY5
+  location: cage 101
+  name: rack-108
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48
+- site: NY5
+  location: cage 101
+  name: rack-109
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48
+- site: NY5
+  location: cage 101
+  name: rack-110
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48
+
+- site: NY5
+  location: cage 201
+  name: rack-201
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48
+- site: NY5
+  location: cage 201
+  name: rack-202
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48
+- site: NY5
+  location: cage 201
+  name: rack-203
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48
+- site: NY5
+  location: cage 201
+  name: rack-204
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48
+- site: PNJ1
+  location: cage 2000
+  name: rack-A599
+  role: Compute Rack
+  type: 4-post-cabinet
+  width: 19
+  u_height: 48

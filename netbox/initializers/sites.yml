@@ -1,0 +1,41 @@
+- name: NY5
+  slug: ny5
+  region: NY
+  status: active
+  facility: Equinix NY5
+
+- name: PNJ1
+  slug: pnj1
+  region: NY
+  status: active
+  facility: QTS PNJ1
+
+- name: LON3
+  slug: lon3
+  region: UK
+  status: active
+  facility: Interxion LON3
+
+- name: LD7
+  slug: ld7
+  region: UK
+  status: active
+  facility: Equinix LD7
+
+- name: CH2
+  slug: ch2
+  region: AMER
+  status: active
+  facility: Equinix CH2
+
+- name: HK2
+  slug: hk2
+  region: APAC
+  status: active
+  facility: Equinix HK2
+
+- name: SG3
+  slug: sg3
+  region: APAC
+  status: active
+  facility: Equinix SG3

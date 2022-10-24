@@ -1,0 +1,53 @@
+! Startup-config last modified at Mon Oct 24 03:52:13 2022 by root
+! device: leaf1 (cEOSLab, EOS-4.28.3M-28837868.4283M (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$4MApnjbFbxdK/vhr$C/tykVwHrk.SPnzpLPsWsjU0sW9zcTXE5ySXvfLm3zu0cZLVgeVLWKzuCNHS.ktjOPakdJw.Nc/FdDy9/.BFv1
+username arista secret sha512 $6$lxs.93fORQf7JJmB$vlUYn5tzq/y3K6KYhuOvNwg9quiafmojZyjnGG/B7aSScm98LOsgL/naFPglICNPgOcEkHyde6JWtLGVwBCKi1
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname leaf1
+!
+snmp-server community public ro
+snmp-server vrf MGMT
+!
+spanning-tree mode mstp
+!
+management api http-commands
+   protocol http
+   no shutdown
+!
+management api gnmi
+   transport grpc def
+      vrf MGMT
+   !
+   transport grpc default
+   provider eos-native
+!
+management api netconf
+   transport ssh default
+!
+interface Ethernet1
+   no switchport
+   ip address 10.10.10.11/31
+!
+interface Loopback0
+    ip address 10.0.0.21/32
+!
+interface Management0
+   ip address 192.168.121.21/24
+!
+ip routing
+!
+ip route 0.0.0.0/0 192.168.121.1
+!
+router bgp 1256
+   router-id 10.0.0.21
+   neighbor 10.10.10.10 remote-as 156
+   neighbor 10.10.10.10 description test-neighbor
+!
+end

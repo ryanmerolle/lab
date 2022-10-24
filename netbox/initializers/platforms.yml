@@ -1,0 +1,20 @@
+- name: EOS
+  slug: eos
+  manufacturer: Arista
+  napalm_driver: eos
+- name: IOS
+  slug: ios
+  manufacturer: Cisco
+  napalm_driver: ios
+- name: PANOS
+  slug: panos
+  manufacturer: Palo Alto Networks
+  napalm_driver: panos
+- name: FortiOS
+  slug: fortios
+  manufacturer: Fortinet
+  napalm_driver: fortios
+- name: JUNOS
+  slug: junos
+  manufacturer: Juniper
+  napalm_driver: junos

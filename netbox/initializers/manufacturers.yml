@@ -1,0 +1,14 @@
+- name: Arista
+  slug: arista
+- name: Cisco
+  slug: cisco
+- name: Palo Alto Networks
+  slug: palo-alto-networks
+- name: Fortinet
+  slug: Fortinet
+- name: Juniper
+  slug: juniper
+- name: HPE
+  slug: hpe
+- name: Dell
+  slug: dell

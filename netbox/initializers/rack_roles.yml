@@ -1,0 +1,12 @@
+- name: Compute Rack
+  slug: compute-rack
+  color: Pink
+- name: IDF Rack
+  slug: idf-rack
+  color: Cyan
+- name: Network Rack
+  slug: network-rack
+  color: Grey
+- name: Storage Rack
+  slug: storage-rack
+  color: Teal

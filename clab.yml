@@ -1,0 +1,137 @@
+name: lab
+
+mgmt:
+  network: netlab_mgmt
+  ipv4_subnet: 192.168.121.0/24
+  # Note: 'start' not validated
+
+topology:
+  nodes:
+    spine1:
+      mgmt_ipv4: 192.168.121.11
+      kind: ceos
+      image: arista/ceos:4.28.3M
+      env: {'INTFTYPE': 'et'}
+    #spine2:
+    #  mgmt_ipv4: 192.168.121.12
+    #  kind: ceos
+    #  image: arista/ceos:4.28.3M
+    #  env: {'INTFTYPE': 'et'}
+    leaf1:
+      mgmt_ipv4: 192.168.121.21
+      kind: ceos
+      image: arista/ceos:4.28.3M
+      env: {'INTFTYPE': 'et'}
+    #leaf2:
+    #  mgmt_ipv4: 192.168.121.22
+    #  kind: ceos
+    #  image: arista/ceos:4.28.3M
+    #  env: {'INTFTYPE': 'et'}
+    #leaf3:
+    #  mgmt_ipv4: 192.168.121.23
+    #  kind: ceos
+    #  image: arista/ceos:4.28.3M
+    #  env: {'INTFTYPE': 'et'}
+    #leaf4:
+    #  mgmt_ipv4: 192.168.121.24
+    #  kind: ceos
+    #  image: arista/ceos:4.28.3M
+    #  env: {'INTFTYPE': 'et'}
+    prometheus:
+      kind: linux
+      image: prom/prometheus:latest
+      mgmt_ipv4: 192.168.121.101
+      user: 65534:65534
+      ports:
+        - 9090:9090
+      binds:
+        - ./prometheus/:/etc/prometheus/
+      cmd: |
+        --config.file=/etc/prometheus/prometheus.yaml
+        --web.console.libraries=/usr/share/prometheus/console_libraries:ro
+        --web.console.templates=/usr/share/prometheus/consoles:ro
+        --log.level=debug
+    telegraf:
+      image: telegraf
+      mgmt_ipv4: 192.168.121.102
+      kind: linux
+      ports:
+        - 9011:9011
+      binds:
+       - ./telegraf:/etc/telegraf:ro
+      cmd: "telegraf --config-directory /etc/telegraf/telegraf.d"
+    grafana:
+      kind: linux
+      image: grafana/grafana:latest
+      mgmt_ipv4: 192.168.121.103
+      binds:
+        - ./grafana/datasources/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
+        - ./grafana/dashboards.yaml/:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
+        - ./grafana/dashboards:/var/tmp/dashboards:ro
+      ports:
+        - 3000:3000
+
+
+    #gnmic:
+    #  mgmt_ipv4: 192.168.121.107
+    #  kind: linux
+    #  image: ghcr.io/openconfig/gnmic:latest
+    #  binds:
+    #    - ./gnmic.yaml:/app/gnmic.yaml:ro
+    #    - /var/run/docker.sock:/var/run/docker.sock
+    #kafka-server:
+    #  mgmt_ipv4: 192.168.121.108
+    #  kind: linux
+    #  image: bitnami/kafka:latest
+    #  env:
+    #    KAFKA_CFG_ZOOKEEPER_CONNECT: clab-lab12-zookeeper-server:2181
+    #    KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://clab-lab12-kafka-server:9092
+    #    ALLOW_PLAINTEXT_LISTENER: yes
+    #    JMX_PORT: 9000
+    #zookeeper-server:
+    #  mgmt_ipv4: 192.168.121.109
+    #  kind: linux
+    #  image: bitnami/zookeeper:latest
+    #  env:
+    #    ALLOW_ANONYMOUS_LOGIN: yes
+    #kafka-ui:
+    #  mgmt_ipv4: 192.168.121.110
+    #  kind: linux
+    #  image: provectuslabs/kafka-ui:latest
+    #  env:
+    #    KAFKA_CLUSTERS_0_NAME: local
+    #    KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: PLAINTEXT://clab-lab12-kafka-server:9092
+    #    KAFKA_CLUSTERS_0_ZOOKEEPER: localhost:2181
+
+
+  links:
+  - endpoints:
+    - "spine1:et1"
+    - "leaf1:et1"
+  #- endpoints:
+  #  - "spine1:et2"
+  #  - "leaf2:et1"
+  #- endpoints:
+  #  - "leaf1:et3"
+  #  - "leaf2:et3"
+  #- endpoints:
+  #  - "spine1:et3"
+  #  - "leaf3:et1"
+  #- endpoints:
+  #  - "spine1:et4"
+  #  - "leaf4:et1"
+  #- endpoints:
+  #  - "spine2:et1"
+  #  - "leaf1:et2"
+  #- endpoints:
+  #  - "spine2:et2"
+  #  - "leaf2:et2"
+  #- endpoints:
+  #  - "leaf1:et4"
+  #  - "leaf2:et4"
+  #- endpoints:
+  #  - "spine2:et3"
+  #  - "leaf3:et2"
+  #- endpoints:
+  #  - "spine2:et4"
+  #  - "leaf4:et2"

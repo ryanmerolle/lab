@@ -1,0 +1,53 @@
+! Startup-config last modified at Mon Oct 24 03:52:10 2022 by root
+! device: spine1 (cEOSLab, EOS-4.28.3M-28837868.4283M (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$UYxKtSTvYMQaqID6$noID011Aw.EJqxNA2U9bHUQMKYAXXfa9pINT1aYR6rSwaAusZ5xjvXxqVsnnu8tZeOtfr.cE8cuAkTXiuaekX.
+username arista secret sha512 $6$EotuYKYlx4MAReeb$bd77mVvSHz1oFJDndFY2hVRqFeULD7XNIhQmbrJNb8vOBGqyHF2MtJTiPTsNsD5pysagJ/POLhKrGKtaECBEs.
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname spine1
+!
+snmp-server community public ro
+snmp-server vrf MGMT
+!
+spanning-tree mode mstp
+!
+management api http-commands
+   protocol http
+   no shutdown
+!
+management api gnmi
+   transport grpc def
+      vrf MGMT
+   !
+   transport grpc default
+   provider eos-native
+!
+management api netconf
+   transport ssh default
+!
+interface Ethernet1
+   no switchport
+   ip address 10.10.10.10/31
+!
+interface Loopback0
+    ip address 10.0.0.11/32
+!
+interface Management0
+   ip address 192.168.121.11/24
+!
+ip routing
+!
+ip route 0.0.0.0/0 192.168.121.1
+!
+router bgp 156
+   router-id 10.0.0.11
+   neighbor 10.10.10.11 remote-as 1256
+   neighbor 10.10.10.11 description test-neighbor
+!
+end

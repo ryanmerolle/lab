@@ -1,0 +1,98 @@
+## Possible Choices:
+##   type:
+##   - text
+##   - integer
+##   - boolean
+##   - date
+##   - url
+##   - select
+##   - multiselect
+##   - object
+##   - multiobject
+##   filter_logic:
+##   - disabled
+##   - loose
+##   - exact
+##   ui_visibility:
+##   - read-write
+##   - read-only
+##   - hidden
+##
+## Examples:
+
+text_field:
+  type: text
+  label: Custom Text
+  description: Enter text in a text field.
+  required: false
+  weight: 0
+  group_name: group1
+  ui_visibility: read-only
+  on_objects:
+  - dcim.models.Device
+  - dcim.models.Rack
+  - dcim.models.Site
+  - dcim.models.DeviceType
+  - ipam.models.IPAddress
+  - ipam.models.Prefix
+  - tenancy.models.Tenant
+  - virtualization.models.VirtualMachine
+integer_field:
+  type: integer
+  label: Custom Number
+  description: Enter numbers into an integer field.
+  required: true
+  filter_logic: loose
+  validation_minimum: 0
+  validation_maximum: 255
+  weight: 10
+  group_name: group1
+  on_objects:
+  - tenancy.models.Tenant
+select_field:
+  type: select
+  label: Choose between items
+  required: false
+  filter_logic: exact
+  weight: 30
+  default: First Item
+  on_objects:
+  - dcim.models.Device
+  choices:
+  - First Item
+  - Second Item
+  - Third Item
+  - Fifth Item
+  - Fourth Item
+select_field_legacy_format:
+  type: select
+  label: Choose between items
+  required: false
+  filter_logic: loose
+  weight: 30
+  on_objects:
+  - dcim.models.Device
+  choices:
+  - value: A # this is the deprecated format.
+  - value: B # we only use it for the tests.
+  - value: C # please see above for the new format.
+  - value: "D like deprecated"
+  - value: E
+url_field:
+  type: url
+  label: Hyperlink
+  description: Link to something nice.
+  required: true
+  filter_logic: disabled
+  validation_regex: ^https://
+  on_objects:
+  - tenancy.models.Provider
+multiobject_field:
+  type: multiobject
+  label: Site Summary
+  description: IP addresses that belong to this Site
+  required: true
+  filter_logic: exact
+  on_objects:
+  - dcim.models.Site
+  object_type: ipam.models.IPAddress

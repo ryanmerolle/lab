@@ -1,0 +1,28 @@
+scrape_configs:
+- job_name: prometheus
+  static_configs:
+  - targets: ['localhost:9090']
+
+- job_name: grafana
+  static_configs:
+  - targets: ['clab-netdb-grafana:3000']
+
+- job_name: telegraf
+  static_configs:
+  - targets: ['clab-netdb-telegraf:9011']
+
+#- job_name: netbox
+#  static_configs:
+#  - targets: ['netbox:8001']
+#
+#- job_name: nginx
+#  static_configs:
+#  - targets: ['nginx-exporter:9113']
+#
+#- job_name: postgresql
+#  static_configs:
+#  - targets: ['postgres-exporter:9187']
+#
+#- job_name: redis
+#  static_configs:
+#  - targets: ['redis-worker-exporter:9121', 'redis-cache-exporter:9121']

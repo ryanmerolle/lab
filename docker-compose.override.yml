@@ -1,0 +1,101 @@
+version: '3.4'
+services:
+  # netbox
+  netbox:
+    build:
+      context: .
+      dockerfile: Dockerfile-Plugins
+    ports:
+      - "8000:8080"
+    environment:
+      METRICS_ENABLED: 'true'
+    volumes:
+      - ./initializers:/opt/netbox/initializers:z,ro
+      - type: tmpfs
+        target: /tmp/metrics
+        read_only: false
+
+
+  netbox-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile-Plugins
+  netbox-housekeeping:
+    build:
+      context: .
+      dockerfile: Dockerfile-Plugins
+
+  # nginx
+  #nginx-exporter:
+  #  image: nginx/nginx-prometheus-exporter:latest
+  #  depends_on:
+  #  - nginx
+  #  command:
+  #  - -nginx.scrape-uri
+  #  - http://nginx:8081/stub_status
+
+  ## postgres
+  #postgres-exporter:
+  #  image: wrouesnel/postgres_exporter:latest
+  #  depends_on:
+  #  - postgres
+  #  environment:
+  #    DATA_SOURCE_URI: postgres?sslmode=disable
+  #    DATA_SOURCE_USER: netbox
+  #    DATA_SOURCE_PASS: J5brHrAXFLQSif0K
+  #    PG_EXPORTER_AUTO_DISCOVER_DATABASES: 'true'
+#
+  ## redis
+  #redis-worker-exporter:
+  #  image: oliver006/redis_exporter:latest
+  #  depends_on:
+  #  - redis
+  #  environment:
+  #    REDIS_ADDR: redis://redis:6379
+  #    REDIS_PASSWORD: H733Kdjndks81
+  #redis-cache-exporter:
+  #  image: oliver006/redis_exporter
+  #  depends_on:
+  #  - redis-cache
+  #  environment:
+  #    REDIS_ADDR: redis://redis-cache:6379
+  #    REDIS_PASSWORD: t4Ph722qJ5QHeQ1qfu36
+#
+  ## prometheus
+  #prometheus:
+  #  image: prom/prometheus:latest
+  #  depends_on:
+  #  - postgres-exporter
+  #  - redis-cache-exporter
+  #  - redis-worker-exporter
+  #  #- nginx-exporter
+  #  - netbox
+  #  ports:
+  #  - '9090:9090'
+  #  volumes:
+  #  - ./prometheus.yml:/etc/prometheus/prometheus.yml
+  #  - prometheus-data:/prometheus/data
+#
+  ## grafana
+  #grafana:
+  #  image: grafana/grafana:latest
+  #  depends_on:
+  #  - prometheus
+  #  environment:
+  #    GF_SECURITY_ADMIN_USER: admin
+  #    GF_SECURITY_ADMIN_PASSWORD: admin
+  #    GF_SECURITY_SECRET_KEY: oew5RCBGGBba0MdsEKrj
+  #    GF_METRICS_ENABLED: 'true'
+  #  ports:
+  #  - '3000:3000'
+  #  volumes:
+  #  #- ./monitoring/grafana/plugins/:/var/lib/grafana/plugins/:z,ro
+  #  #- ./monitoring/grafana/provisioning/:/etc/grafana/provisioning/:z,ro
+  #  #- ./monitoring/grafana/dashboards/:/etc/grafana/dashboards/:z,ro
+  #  - grafana-data:/var/lib/grafana
+
+volumes:
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
